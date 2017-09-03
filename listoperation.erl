@@ -17,6 +17,36 @@ len([]) -> 0;
 len([_|T]) -> 1 + len(T).
 
 
-sum(T) -> sum(T,0).
-sum([H|T],Acc) -> sum(T,H+Acc);
-sum([],Acc) -> Acc.
+tail_len(T) -> tail_len(T,0).
+tail_len([_H |T],Acc) -> tail_len(T,1+Acc);
+tail_len([],Acc) -> Acc.
+
+
+tail_sum(T) -> tail_sum(T,0).
+tail_sum([H|T],Acc) -> tail_sum(T,H+Acc);
+tail_sum([],Acc) -> Acc.
+
+
+rev([H|T]) -> rev(T) ++ [H];
+rev([]) -> [].
+
+tail_rev([],Acc) -> Acc;
+tail_rev([H|T],Acc) -> tail_rev(T,[H|Acc]).
+tail_rev(L) -> tail_rev(L,[]).
+
+
+list_max([]) -> empty;
+list_max([H|T]) -> {ok,list_max(H,T)}.
+
+list_max(X,[]) -> X;
+list_max(X,[H|T]) when X < H -> list_max(H,T);
+list_max(X,[_|T]) -> list_max(X,T).
+
+
+%%list_max([]   ) -> empty;
+%%list_max([H|T]) -> {ok, list_max(H, T)}.
+%%
+%%list_max(X, []   )            -> X;
+%%list_max(X, [H|T]) when X < H -> list_max(H, T);
+%%list_max(X, [_|T])            -> list_max(X, T).
+
