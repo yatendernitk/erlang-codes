@@ -38,6 +38,16 @@ tail_rev(L) -> tail_rev(L,[]).
 list_max([]) -> empty;
 list_max([H|T]) -> {ok,list_max(H,T)}.
 
+
+insert_unique(X,[]) ->
+  [X];
+insert_unique(X,Set) ->
+  case lists:member(X,Set) of
+    true  -> Set;
+    false -> [X|Set]
+  end.
+
+
 list_max(X,[]) -> X;
 list_max(X,[H|T]) when X < H -> list_max(H,T);
 list_max(X,[_|T]) -> list_max(X,T).
@@ -47,3 +57,12 @@ find_item(_X,[]) -> not_found;
 find_item(X,[H|_]) when X == H -> found;
 find_item(X,[_|T]) -> find_item(X,T).
 
+
+duplicate(0,_) ->
+  [];
+duplicate(N,Term) when N > 0 ->
+  [Term|duplicate(N-1,Term)].
+
+tail_duplicate(N,Term) -> tail_duplicate(N,Term,[]).
+tail_duplicate(0,_,Li) -> Li;
+tail_duplicate(N,Term,Li) -> tail_duplicate(N-1,Term,[Term|Li]).
