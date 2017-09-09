@@ -70,4 +70,6 @@ tail_duplicate(N,Term,Li) -> tail_duplicate(N-1,Term,[Term|Li]).
 mul_first([],[]) -> [];
 mul_first(X,Y) -> mul_first(X,Y,[]).
 mul_first([H|T],[Y|Z],Acc)-> mul_first(T,Z,[H*Y|Acc]);
-mul_first([],[],Acc)-> tail_rev(Acc).
+mul_first([],[],Acc)-> tail_rev(Acc);
+mul_first([H|T],[],Acc) -> mul_first(T,[],[H|Acc]);
+mul_first([],[H|T],Acc) -> mul_first([],T,[H|Acc]).
