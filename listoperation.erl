@@ -66,3 +66,8 @@ duplicate(N,Term) when N > 0 ->
 tail_duplicate(N,Term) -> tail_duplicate(N,Term,[]).
 tail_duplicate(0,_,Li) -> Li;
 tail_duplicate(N,Term,Li) -> tail_duplicate(N-1,Term,[Term|Li]).
+
+mul_first([],[]) -> [];
+mul_first(X,Y) -> mul_first(X,Y,[]).
+mul_first([H|T],[Y|Z],Acc)-> mul_first(T,Z,[H*Y|Acc]);
+mul_first([],[],Acc)-> tail_rev(Acc).
